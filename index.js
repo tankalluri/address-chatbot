@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const ssnValidator = require('ssn-validator')
 
 const app = express();
-const port = process.env.port || 4041;
+const port = process.env.PORT || 4041;
 const users = [{name : "Tanmayee", email : "tanmayee7@gmail.com"}]
 
 app.use(bodyParser.json());
