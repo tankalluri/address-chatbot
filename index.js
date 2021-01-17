@@ -14,7 +14,6 @@ app.listen(port, () => {
 
 app.get('/', (req, res) => {
         res.send('Server is up and running')
-    }
 })
 
 app.post('/validateSSN', (req, res) => {
