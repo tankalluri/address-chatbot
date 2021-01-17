@@ -12,6 +12,11 @@ app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
 });
 
+app.get('/', (req, res) => {
+        res.send('Server is up and running')
+    }
+})
+
 app.post('/validateSSN', (req, res) => {
     if(req.body.ssn){
         res.json({isValid : ssnValidator.isValid(req.body.ssn)});
