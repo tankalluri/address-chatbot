@@ -17,6 +17,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/validateSSN', (req, res) => {
+    if(req.body && req.body.queryResult && req.body.queryResult.parameters){
     let valid = ssnValidator.isValid(req.body.queryResult.parameters['ssn']) === true ? "SSN is correct" : "SSN is wrong";
     let respObj = {
         "fulfillmentText" : " ",
@@ -24,10 +25,18 @@ app.post('/validateSSN', (req, res) => {
         "source" : ""
     }
     res.json(respObj);
+}
 })
 
 app.post('/validatePin', (req, res) => {
-    if(req.body.pin){
-        res.json({isValid : req.body.pin.length === 4});
+    if(req.body && req.body.queryResult && req.body.queryResult.parameters){
+        let valid = req.body.queryResult.parameters['pin'].length === 4 ? "Pin is correct" : "Pin is wrong";
+        let respObj = {
+            "fulfillmentText" : " ",
+            "fulfillmentMessages" : [{"text" : {"text" : [valid]}}],
+            "source" : ""
+        }
+        res.json(respObj);
     }
+    })
 })
