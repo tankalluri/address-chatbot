@@ -17,9 +17,13 @@ app.get('/', (req, res) => {
 })
 
 app.post('/validateSSN', (req, res) => {
-    if(req.body.ssn){
-        res.json({isValid : ssnValidator.isValid(req.body.ssn)});
+    let valid = ssnValidator.isValid(req.body.queryResult.parameters['ssn']) === true ? "SSN is correct" : "SSN is wrong";
+    let respObj = {
+        "fulfillmentText" : " ",
+        "fulfillmentMessages" : [{"text" : {"text" : [valid]}}],
+        "source" : ""
     }
+    res.json(respObj);
 })
 
 app.post('/validatePin', (req, res) => {
