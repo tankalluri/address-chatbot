@@ -38,5 +38,4 @@ app.post('/validatePin', (req, res) => {
         }
         res.json(respObj);
     }
-    })
 })
